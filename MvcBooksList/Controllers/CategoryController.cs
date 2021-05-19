@@ -1,18 +1,45 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MvcBooksList.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: CategoryController
-        public ActionResult Index()
+        readonly Uri baseAddressOfCategoryApi;
+        public CategoryController(IConfiguration configuration)
         {
-            return View();
+                baseAddressOfCategoryApi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
+        }
+        // GET: CategoryController
+        public async Task<ActionResult> Index()
+        {
+            List<Category> categories;
+            
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+
+                var resopnse = await client.GetAsync("api/AdminCategory");
+                if(resopnse.IsSuccessStatusCode)
+                {
+                   var result =  resopnse.Content.ReadAsStringAsync();
+                   categories= JsonConvert.DeserializeObject<List<Category>>(result.Result);
+                    return View(categories);
+                }
+            }
+                return View(null);
         }
 
         // GET: CategoryController/Details/5
