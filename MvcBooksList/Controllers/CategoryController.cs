@@ -69,7 +69,7 @@ namespace MvcBooksList.Controllers
             }
         }
 
-        // GET: CategoryController/Edit/5
+        //GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
