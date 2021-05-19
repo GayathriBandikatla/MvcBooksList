@@ -68,6 +68,7 @@ namespace MvcBooksList.Controllers
                 return View();
             }
         }
+        //..
 
         //GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
