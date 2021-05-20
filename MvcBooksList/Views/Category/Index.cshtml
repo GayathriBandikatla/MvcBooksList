@@ -4,11 +4,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <form asp-action="Create" method="post">
+        <div class="row">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+            <div class="form-group">
+                <div class="col-auto">
+                    
+
+                    <input class="form-control" placeholder="Create new Category" name="categoryName" id="categoryName" />
+                </div>
+            </div>
+            <div class="btn-group">
+
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-success" value="Create" />
+                </div>
+                <div class="col-auto">
+                    <input type="reset" class="btn btn-secondary" value="Reset" />
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+
+</div>
 
 @if (Model != null)
 {
@@ -57,10 +79,11 @@
                         @Html.DisplayFor(modelItem => item.ModifiedOn)
                     </td>
                     <td>
-                        @foreach(SubCategory subCategory in item.SubCategories)
-                    {
-                        @Html.DisplayFor(s=>subCategory.SubCategoryName) 
-                    }
+                        @if (item.SubCategories != null)
+                            @foreach (SubCategory subCategory in item.SubCategories)
+                            {
+                                @Html.DisplayFor(s => subCategory.SubCategoryName)
+                            }
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

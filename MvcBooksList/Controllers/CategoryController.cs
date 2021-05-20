@@ -48,17 +48,28 @@ namespace MvcBooksList.Controllers
             return View();
         }
 
-        // GET: CategoryController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CategoryController/Create
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async ActionResult Create(string categoryName)
         {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+
+                HttpContent httpContent = new StringContent(categoryName);
+                var resopnse = await client.PatchAsync("api/AdminCategory",httpContent);
+                if (resopnse.IsSuccessStatusCode)
+                {
+                    
+                    return View(categories);
+                }
+            }
+
+
             try
             {
                 return RedirectToAction(nameof(Index));
