@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
@@ -51,21 +52,26 @@ namespace MvcBooksList.Controllers
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async ActionResult Create(string categoryName)
+        public async Task<ActionResult> Create(string categoryName)
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = baseAddressOfCategoryApi;
+               // client.BaseAddress = baseAddressOfCategoryApi;
 
                 // TO add token to header in future.
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
-
-                HttpContent httpContent = new StringContent(categoryName);
-                var resopnse = await client.PatchAsync("api/AdminCategory",httpContent);
+                
+                HttpContent httpContent = new StringContent(content:JsonConvert.SerializeObject(categoryName),encoding: Encoding.Default,mediaType:"application/json");
+                var resopnse = await client.PostAsync("https://localhost:44350/api/AdminCategory", httpContent);
                 if (resopnse.IsSuccessStatusCode)
                 {
-                    
-                    return View(categories);
+                    string responseContenet= await resopnse.Content.ReadAsStringAsync();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.CategoryMessage = "Book Cannot be created noe. Try after some time";
                 }
             }
 
