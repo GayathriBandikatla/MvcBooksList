@@ -10,7 +10,7 @@
 
             <div class="form-group">
                 <div class="col-auto">
-                    
+
 
                     <input class="form-control" placeholder="Create new Category" name="categoryName" id="categoryName" />
                 </div>
@@ -34,68 +34,44 @@
 
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoryName)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.AddedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AddedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModifiedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModifiedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
-                    </td>
-                    <td>
-                        @if (item.SubCategories != null)
-                            @foreach (SubCategory subCategory in item.SubCategories)
-                            {
-                                @Html.DisplayFor(s => subCategory.SubCategoryName)
-                            }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="row">
+
+
+        @foreach (Category item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem; height:20rem">
+
+                    <div class="card-body">
+                        <h2 class="card-title">@Html.DisplayFor(m => item.CategoryName)</h2>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        @foreach (SubCategory subCategory in item.SubCategories)
+                        {
+                            <li class="list-group-item">@Html.DisplayFor(d => subCategory.SubCategoryName)</li>
+
+                        }
+
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">View Details</a>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Add SubCategory" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text btn-outline-success" id="basic-addon1">Add</span>
+                        </div>
+                        @*<input class="btn btn-secondary" type="button" value="Add SubCategory" />*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
 
 }
+
 else
 {
     <h3>No Categories present</h3>
