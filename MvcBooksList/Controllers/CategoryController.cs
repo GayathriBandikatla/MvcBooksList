@@ -18,13 +18,13 @@ namespace MvcBooksList.Controllers
         readonly Uri baseAddressOfCategoryApi;
         public CategoryController(IConfiguration configuration)
         {
-                baseAddressOfCategoryApi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
+            baseAddressOfCategoryApi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
         }
         // GET: CategoryController
         public async Task<ActionResult> Index()
         {
             List<Category> categories;
-            
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = baseAddressOfCategoryApi;
@@ -33,14 +33,14 @@ namespace MvcBooksList.Controllers
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
 
                 var resopnse = await client.GetAsync("api/AdminCategory");
-                if(resopnse.IsSuccessStatusCode)
+                if (resopnse.IsSuccessStatusCode)
                 {
-                   var result =  resopnse.Content.ReadAsStringAsync();
-                   categories= JsonConvert.DeserializeObject<List<Category>>(result.Result);
+                    var result = resopnse.Content.ReadAsStringAsync();
+                    categories = JsonConvert.DeserializeObject<List<Category>>(result.Result);
                     return View(categories);
                 }
             }
-                return View(null);
+            return View(null);
         }
 
         // GET: CategoryController/Details/5
@@ -49,23 +49,32 @@ namespace MvcBooksList.Controllers
             return View();
         }
 
-      
+
+    private class PostDateForAddSubCAtegory
+        {
+            public string categoryName { get; set; }
+            public string subCategoryName { get; set; }
+
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string categoryName)
+        public async Task<ActionResult> AddSubCategory(string categoryName, string subCategoryName)
         {
+
+            PostDateForAddSubCAtegory data = new PostDateForAddSubCAtegory
+            {
+                categoryName = categoryName.Replace("&nbsp"," "),
+                subCategoryName = subCategoryName
+            };
             using (HttpClient client = new HttpClient())
             {
-               // client.BaseAddress = baseAddressOfCategoryApi;
-
-                // TO add token to header in future.
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
-                
-                HttpContent httpContent = new StringContent(content:JsonConvert.SerializeObject(categoryName),encoding: Encoding.Default,mediaType:"application/json");
-                var resopnse = await client.PostAsync("https://localhost:44350/api/AdminCategory", httpContent);
+                client.BaseAddress = baseAddressOfCategoryApi;
+                HttpContent httpContent = new StringContent(content: JsonConvert.SerializeObject(data), encoding: Encoding.Default, mediaType: "application/json");
+                var resopnse = await client.PostAsync("api/AdminSubCategory", httpContent);
                 if (resopnse.IsSuccessStatusCode)
                 {
-                    string responseContenet= await resopnse.Content.ReadAsStringAsync();
+                    string responseContenet = await resopnse.Content.ReadAsStringAsync();
 
                     return RedirectToAction("Index");
                 }
@@ -74,16 +83,40 @@ namespace MvcBooksList.Controllers
                     ViewBag.CategoryMessage = "Book Cannot be created noe. Try after some time";
                 }
             }
+                return RedirectToAction("Index");
+        }
 
 
-            try
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(string categoryName)
+        {
+            using (HttpClient client = new HttpClient())
             {
-                return RedirectToAction(nameof(Index));
+                // client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+
+                HttpContent httpContent = new StringContent(content: JsonConvert.SerializeObject(categoryName), encoding: Encoding.Default, mediaType: "application/json");
+                client.BaseAddress = baseAddressOfCategoryApi;
+                var resopnse = await client.PostAsync("api/AdminCategory", httpContent);
+                if (resopnse.IsSuccessStatusCode)
+                {
+                    string responseContenet = await resopnse.Content.ReadAsStringAsync();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.CategoryMessage = "Book Cannot be created noe. Try after some time";
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
+
         }
 
         // GET: CategoryController/Edit/5

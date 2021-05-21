@@ -1,0 +1,22 @@
+﻿
+@model string
+<form asp-action="AddSubCategory" method="post">
+    
+        <div class="form-group">
+            <div class="row justify-content-center">
+
+                <input type="text" class="form-control col-8" placeholder="Add SubCategory" aria-label="SubCategory" name="subCategoryName" />
+
+
+                <input class="input-group-text btn-outline-success col-auto" type="submit" value="Add" />
+
+
+                <input name="categoryName" id="categoryName" type="hidden" value=@Model.Replace(" ","&nbsp") />
+            </div>
+        </div>
+   </form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
