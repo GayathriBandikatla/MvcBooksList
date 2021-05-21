@@ -3,13 +3,87 @@
     ViewData["Title"] = "Virtual Book Store | Books";
 }
 
-<div class="form-horizontal">
+@if (Model != null)
+{
+    <div class="form-horizontal">
 
-    <hr />
+
+        <h2><b class="align1">Books</b><br /></h2><br />
+        <div class="form-group">
+
+
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subcategory)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+
+
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-controller="Home" asp-action=""> @Html.DisplayFor(modelItem => item.BookName)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+
+                    </tr>
+
+                }
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2  fixed-bot">
+                <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
+            </div>
+
+            <div class="col-md-2  fixed-bot">
+                <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Delisted Books</a></b>
+            </div>
+        </div>
+    </div>
+
+
+}
+else
+{
     <div class="form-group">
 
-
-        <table class="table table-responsive" style="width:400px">
+        <table class="table table-hover clr">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.BookName)
@@ -34,37 +108,16 @@
 
             </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BookName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Author)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Subcategory)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Publisher)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-
-                </tr>
-
-            }
 
         </table>
+
+        <h3 class="newcls">No Books Available</h3>
+
+
+
     </div>
-</div>
 
-
+}
 
 
 
@@ -138,13 +191,4 @@
             </tr>
         }
     </table>*@
-<div class="container">
-    <div class="row">
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
-        </div>
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Delisted Books</a></b>
-        </div>
-    </div>
-</div>
+

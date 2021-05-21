@@ -15,7 +15,7 @@ namespace MvcBooksList.Controllers
     public class HomeController : Controller
     {
         //Hosted web API REST Service base url  
-        string Baseurl = "https://localhost:44382/";
+        string Baseurl = "https://localhost:44305/";
         public async Task<ActionResult> Index()
         {
             List<Book> activebooks = new List<Book>();
@@ -29,8 +29,8 @@ namespace MvcBooksList.Controllers
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/GetActiveBooks");
+                //Sending request to find web api REST service resource GetActiveBooks using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("Book/api/GetActiveBooks");
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
@@ -38,14 +38,13 @@ namespace MvcBooksList.Controllers
                     //Storing the response details recieved from web api   
                     var BooksResponse = Res.Content.ReadAsStringAsync().Result;
 
-                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    //Deserializing the response recieved from web api and storing into the ActiveBooks list  
                     activebooks = JsonConvert.DeserializeObject<List<Book>>(BooksResponse);
 
                 }
-                //returning the employee list to view  
+                //returning the activebooks list to view  
                 return View(activebooks);
             }
         }
     }
 }
-
