@@ -2,7 +2,7 @@
 @model string
 <form asp-action="AddSubCategory" method="post">
     
-        <div class="form-group">
+     
             <div class="row justify-content-center">
 
                 <input type="text" class="form-control col-8" placeholder="Add SubCategory" aria-label="SubCategory" name="subCategoryName" />
@@ -13,7 +13,7 @@
 
                 <input name="categoryName" id="categoryName" type="hidden" value=@Model.Replace(" ","&nbsp") />
             </div>
-        </div>
+        
    </form>
 
 

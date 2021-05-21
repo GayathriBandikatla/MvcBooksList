@@ -44,8 +44,23 @@ namespace MvcBooksList.Controllers
         }
 
         // GET: CategoryController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(string categoryName)
         {
+            Category category;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                var resopnse = await client.GetAsync("api/AdminCategory/" + categoryName);
+                if (resopnse.IsSuccessStatusCode)
+                {
+                    var result = resopnse.Content.ReadAsStringAsync();
+                    category = JsonConvert.DeserializeObject<Category>(result.Result);
+                    return View(category);
+                }
+            }
             return View();
         }
 

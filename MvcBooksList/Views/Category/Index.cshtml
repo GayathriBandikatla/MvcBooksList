@@ -49,16 +49,26 @@
                     <h4 class="card-header text-center">@Html.DisplayFor(m => item.CategoryName)</h4>
 
 
-                    @if (item.SubCategories!=null && item.SubCategories.Count>0)
+                    <a asp-action="Details" asp-controller="Category" asp-route-categoryName="@item.CategoryName" class="btn-link">more details </a>
+                    @if (item.SubCategories != null && item.SubCategories.Count > 0)
                     {
-                        <div class="card-body pre-scrollable hidden-scrollbar">
-                            SubCategories :
+                        <div class="card-body align-content-end pre-scrollable hidden-scrollbar">
 
 
-                            @foreach (SubCategory subCategory in item.SubCategories)
-                            {
-                                @Html.DisplayFor(d => subCategory.SubCategoryName)
-                            }
+                            <ul>
+
+
+                                @foreach (SubCategory subCategory in item.SubCategories)
+                                {
+                                    <li>
+                                        @Html.DisplayFor(d => subCategory.SubCategoryName)
+
+                                    </li>
+
+                                }
+                            </ul>
+
+
                         </div>
                     }
                     else
@@ -66,28 +76,28 @@
                         <div class="card-body">
                             <p>No sub Categories!</p>
                         </div>
-                     }
+                    }
 
 
 
 
-                        <div class="card-footer align-items-center text-j">
-                            @*<a href="#" class="card-link">View Details</a>*@
-                            @Html.Partial("AddSubCategory", item.CategoryName)
-                            @*<input class="btn btn-secondary" type="button" value="Add SubCategory" />*@
-                        </div>
+                    <div class="card-footer align-items-center text-justify">
+                        @Html.Partial("AddSubCategory", item.CategoryName)
+
+                        @*<input class="btn btn-secondary" type="button" value="Add SubCategory" />*@
                     </div>
                 </div>
-            }
-                </div>
+            </div>
+        }
+    </div>
 
 
 
-                }
+}
 
-                else
-                {
-                <h3>No Categories present</h3>
-                }
+else
+{
+    <h3>No Categories present</h3>
+}
 
 

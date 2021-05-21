@@ -1,0 +1,30 @@
+﻿@model MvcBooksList.Models.SubCategory
+
+
+   
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.SubCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ModifiedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(model=> model.ModifiedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AddedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AddedOn)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => model.CategoryName)
+            </td>*@
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*@
+        </tr>
+
