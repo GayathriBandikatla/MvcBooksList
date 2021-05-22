@@ -74,42 +74,50 @@
 
 @*@Html.Partial("AddSubCategory", Model.CategoryName)*@
 
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories[0].SubCategoryName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories[0].ModifiedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories[0].ModifiedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories[0].AddedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories[0].AddedOn)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.SubCategories[0].CategoryName)
-                    </th>*@
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var sub in Model.SubCategories)
+@if (Model.SubCategories !=null)
+{
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubCategories[0].SubCategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubCategories[0].ModifiedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubCategories[0].ModifiedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubCategories[0].AddedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubCategories[0].AddedOn)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.SubCategories[0].CategoryName)
+                        </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sub in Model.SubCategories)
+                {
+                    @Html.Partial("SubCategoryRow", sub)
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+}
+            else
             {
-                @Html.Partial("SubCategoryRow", sub)
-
+                <h3>No Sub Categories!</h3>
             }
-        </tbody>
-    </table>
-
-
-</div>
 
 
 <div>
