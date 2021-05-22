@@ -46,7 +46,7 @@ namespace MvcBooksList.Controllers
         // GET: CategoryController/Details/5
         public async Task<ActionResult> Details(string categoryName)
         {
-            Category category;
+            
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = baseAddressOfCategoryApi;
@@ -57,11 +57,30 @@ namespace MvcBooksList.Controllers
                 if (resopnse.IsSuccessStatusCode)
                 {
                     var result = resopnse.Content.ReadAsStringAsync();
-                    category = JsonConvert.DeserializeObject<Category>(result.Result);
+                    var category = JsonConvert.DeserializeObject<Category>(result.Result);
                     return View(category);
                 }
             }
             return View();
+        }
+
+        public async Task<ActionResult> UpdateCategoryName(string oldName,string categoryName)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                HttpContent putContent = new StringContent(categoryName);
+                
+                var resopnse = await client.PutAsync($"api/AdminCategory/{oldName}/{categoryName}",null);
+                if (resopnse.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Details");
+                }
+            }
+            return RedirectToAction("Index");
         }
 
 

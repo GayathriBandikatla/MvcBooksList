@@ -43,41 +43,42 @@
         @foreach (Category item in Model)
         {
             <div class="col-lg-4 col-xl-4 col-sm-12 col-md-6">
-                <div class="card shadow-sm  mb-5 bg-white rounded" style="width: 100%; height:20rem;">
+                <div class="card shadow-sm  mb-5 bg-white rounded" style="width: 100%; ">
+                    <a class="text-decoration-none" asp-action="Details" asp-controller="Category" asp-route-categoryName="@item.CategoryName" class="card-link">
 
 
-                    <h4 class="card-header text-center">@Html.DisplayFor(m => item.CategoryName)</h4>
+
+                        <h4 class="card-header text-center">@Html.DisplayFor(m => item.CategoryName)</h4>
 
 
-                    <a asp-action="Details" asp-controller="Category" asp-route-categoryName="@item.CategoryName" class="btn-link">more details </a>
-                    @if (item.SubCategories != null && item.SubCategories.Count > 0)
-                    {
-                        <div class="card-body align-content-end pre-scrollable hidden-scrollbar">
+                        @if (item.SubCategories != null && item.SubCategories.Count > 0)
+                        {
+                            <div class="card-body align-content-end pre-scrollable hidden-scrollbar" style="height: 10rem;">
 
 
-                            <ul>
+                                <ul>
 
 
-                                @foreach (SubCategory subCategory in item.SubCategories)
-                                {
-                                    <li>
-                                        @Html.DisplayFor(d => subCategory.SubCategoryName)
+                                    @foreach (SubCategory subCategory in item.SubCategories)
+                                    {
+                                        <li>
+                                            @Html.DisplayFor(d => subCategory.SubCategoryName)
 
-                                    </li>
+                                        </li>
 
-                                }
-                            </ul>
+                                    }
+                                </ul>
 
 
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="card-body">
-                            <p>No sub Categories!</p>
-                        </div>
-                    }
-
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-body" style="height: 10rem;">
+                                <p>No sub Categories!</p>
+                            </div>
+                        }
+                    </a>
 
 
 
@@ -87,6 +88,7 @@
                         @*<input class="btn btn-secondary" type="button" value="Add SubCategory" />*@
                     </div>
                 </div>
+
             </div>
         }
     </div>
