@@ -1,0 +1,76 @@
+﻿@model MvcBooksList.Models.Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+
+@if (Model != null)
+{
+    <div>
+        <div>
+            @Html.DisplayNameFor(model => model.BookName)
+            @Html.DisplayFor(model => model.BookName)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayFor(model => model.Author)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Publisher)
+            @Html.DisplayFor(model => model.Publisher)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayFor(model => model.Price)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Pages)
+            @Html.DisplayFor(model => model.Pages)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayFor(model => model.Category)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.Subcategory)
+            @Html.DisplayFor(model => model.Subcategory)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.AddedBy)
+            @Html.DisplayFor(model => model.AddedBy)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.AddedOn)
+            @Html.DisplayFor(model => model.AddedOn)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.LastModifiedOn)
+            @Html.DisplayFor(model => model.LastModifiedOn)
+        </div>
+
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }) |
+            @Html.ActionLink("Delete", "Delete", new { name = Model.BookName }) |
+            @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }) |
+            @Html.ActionLink("Cancel", "Cancel") 
+        </div>
+    </div>
+}
+else
+{
+    <h3>No Book with that Name</h3>
+}
