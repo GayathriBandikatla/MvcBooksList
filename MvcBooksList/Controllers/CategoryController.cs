@@ -82,6 +82,24 @@ namespace MvcBooksList.Controllers
             }
             return RedirectToAction("Index");
         }
+        public async Task<ActionResult> UpdateSubCategoryName(string oldName,string subCategoryName)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseAddressOfCategoryApi;
+
+                // TO add token to header in future.
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                HttpContent putContent = new StringContent(subCategoryName);
+                
+                var resopnse = await client.PutAsync($"api/AdminSubCategory/{oldName}/{subCategoryName}",null);
+                if (resopnse.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Details");
+                }
+            }
+            return RedirectToAction("Index");
+        }
 
 
     private class PostDateForAddSubCAtegory
