@@ -82,7 +82,7 @@ namespace MvcBooksList.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<ActionResult> UpdateSubCategoryName(string oldName,string subCategoryName)
+        public async Task<ActionResult> UpdateSubCategoryName(string categoryName, string oldName,string subCategoryName)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -92,7 +92,7 @@ namespace MvcBooksList.Controllers
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
                 HttpContent putContent = new StringContent(subCategoryName);
                 
-                var resopnse = await client.PutAsync($"api/AdminSubCategory/{oldName}/{subCategoryName}",null);
+                var resopnse = await client.PutAsync($"api/AdminSubCategory/{categoryName}/{oldName}/{subCategoryName}",null);
                 if (resopnse.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Details");

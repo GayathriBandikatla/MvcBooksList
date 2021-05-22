@@ -47,7 +47,7 @@
                         </div>
                         <form asp-action="UpdateSubCategoryName" method="get">
                             <div class="modal-body">
-
+                                <input type="hidden" name="categoryName" value="@Model.CategoryName" />
                                 <input type="hidden" name="oldName" value="@Model.SubCategoryName" />
                                 @Html.EditorFor(model => model.SubCategoryName, new { htmlAttributes = new { @class = "form-control" } })
 
