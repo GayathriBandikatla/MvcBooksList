@@ -46,7 +46,8 @@ namespace MvcBooksList.Controllers
         // GET: CategoryController/Details/5
         public async Task<ActionResult> Details(string categoryName)
         {
-            
+            Category category;
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = baseAddressOfCategoryApi;
@@ -56,8 +57,8 @@ namespace MvcBooksList.Controllers
                 var resopnse = await client.GetAsync("api/AdminCategory/" + categoryName);
                 if (resopnse.IsSuccessStatusCode)
                 {
-                    var result = resopnse.Content.ReadAsStringAsync();
-                    var category = JsonConvert.DeserializeObject<Category>(result.Result);
+                    string result = await resopnse.Content.ReadAsStringAsync();
+                    category = JsonConvert.DeserializeObject<Category>(result);
                     return View(category);
                 }
             }
@@ -77,7 +78,7 @@ namespace MvcBooksList.Controllers
                 var resopnse = await client.PutAsync($"api/AdminCategory/{oldName}/{categoryName}",null);
                 if (resopnse.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Details",routeValues:new { categoryName });
                 }
             }
             return RedirectToAction("Index");
@@ -95,7 +96,7 @@ namespace MvcBooksList.Controllers
                 var resopnse = await client.PutAsync($"api/AdminSubCategory/{categoryName}/{oldName}/{subCategoryName}",null);
                 if (resopnse.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Details", routeValues: new { categoryName });
                 }
             }
             return RedirectToAction("Index");
@@ -132,7 +133,7 @@ namespace MvcBooksList.Controllers
                 }
                 else
                 {
-                    ViewBag.CategoryMessage = "Book Cannot be created noe. Try after some time";
+                    ViewBag.CategoryMessage = "Book Cannot be created now. Try after some time";
                 }
             }
                 return RedirectToAction("Index");
