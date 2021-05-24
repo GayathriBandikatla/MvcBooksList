@@ -48,6 +48,25 @@ namespace MvcBooksList.Controllers
             return View(bookview);
         }
 
+        [HttpGet]
+        public ActionResult UpdateBookDetails(Book b)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44305/");
+
+                var postTask = client.PostAsJsonAsync<Book>("Book/api/ViewBooks", b);
+                postTask.Wait();
+
+                var res = postTask.Result;
+                if (res.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("EditBookDetails");
+                }
+            }
+            return RedirectToAction("EditBookDetails");
+        }
+
         [HttpPost]
         public ActionResult EditBookDetails(Book b)
         {
