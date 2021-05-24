@@ -1,40 +1,206 @@
-﻿@{
+﻿@model IEnumerable<MvcBooksList.Models.Book>
+@{
     ViewData["Title"] = "Virtual Book Store | Books";
 }
 
-<h2><b class="align1">Books</b><br /></h2><br />
-<table class="table table-hover">
-    <tr>
+@if (Model != null)
+{
+    <div class="form-horizontal">
 
-        <th>Book Name</th>
-        <th>Author</th>
-        <th>Category</th>
-        <th>Subcategory</th>
-        <th>Publisher</th>
-        <th> Price ($)</th>
-    </tr>
-   
-     
-   @foreach (var d in Model)  
-    {  
-        <tr>  
-            <td>@d.BookName</td>  
-            <td>@d.Author</td>  
-            <td>@d.Category</td>  
-            <td>@d.Subcategory</td>  
-            <td>@d.Publisher</td>  
-            <td>@d.Price</td>  
-  
-        </tr>  
-    }  
-</table>
-<div class="container">
+
+        <h2><b class="align1">Books</b><br /></h2><br />
+        <div class="form-group">
+
+
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subcategory)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+
+
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-area="" asp-controller="ViewBookDetails" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+
+                    </tr>
+
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="container fixed-bot">
+        <div class="row">
+            <div class="col-md-2">
+                <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
+            </div>
+
+            <div class="col-md-2">
+               <b> <a class="nav-link" asp-area="" asp-controller="Book" asp-action="ViewDelistedBooks">Delisted Books</a></b>
+            </div>
+        </div>
+    </div>
+
+
+}
+else
+{
+    <div class="form-group">
+
+        <table class="table table-hover clr">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subcategory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+
+
+
+            </tr>
+
+
+        </table>
+
+        <h3 class="newcls">No Books Available</h3>
+
+
+
+    </div>
+
+}
+<div class="container  fixed-bot">
     <div class="row">
-    <div class="col-md-2">
-      <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
-    </div>
-    <div class="col-md-2">
-       <b> <a class="nav-link" asp-area="" asp-controller="Book" asp-action="ViewDelistedBooks">Delisted Books</a></b>
-    </div>
+        <div class="col-md-2">
+            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
+        </div>
+
+        <div class="col-md-2">
+            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Delisted Books</a></b>
+        </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2><b class="align1">Books</b><br /></h2><br />
+    <table class="table table-hover">
+        <tr>
+
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Publisher</th>
+            <th> Price ($)</th>
+        </tr>
+
+
+       @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.BookName</td>
+                <td>@d.Author</td>
+                <td>@d.Category</td>
+                <td>@d.Subcategory</td>
+                <td>@d.Publisher</td>
+                <td>@d.Price</td>
+
+            </tr>
+        }
+    </table>*@
+
