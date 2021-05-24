@@ -71,9 +71,17 @@ body {
 }
 .align{
     text-align:center;
-
 }
 .align1 {
-    text-align:left;
-  
+    text-align:left; 
+}
+.newcls{
+ text-align:center;
+ margin-top:14%;
+  }
+.fixed-bot {
+    margin-top: 18%;
+}
+.clr {
+    background-color: #D3D3D3;
 }
