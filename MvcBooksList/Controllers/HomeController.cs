@@ -112,5 +112,9 @@ namespace MvcBooksList.Controllers
             }
             return RedirectToAction("Index");
         }
+        public ActionResult Create()
+        {
+            return View("AddBook");
+        }
     }
 }
