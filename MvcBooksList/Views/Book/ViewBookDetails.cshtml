@@ -7,63 +7,63 @@
 <br />
 @if (Model != null)
 {
-    <div class="row">
-        <div class="well">
+    <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.BookName)<br>
             @Html.DisplayFor(model => model.BookName)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Author)<br>
             @Html.DisplayFor(model => model.Author)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Publisher)<br>
             @Html.DisplayFor(model => model.Publisher)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Price)<br>
             @Html.DisplayFor(model => model.Price)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Pages)<br>
             @Html.DisplayFor(model => model.Pages)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Category)<br>
             @Html.DisplayFor(model => model.Category)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.Subcategory)<br>
             @Html.DisplayFor(model => model.Subcategory)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.AddedBy)<br>
             @Html.DisplayFor(model => model.AddedBy)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.ModifiedBy)<br>
             @Html.DisplayFor(model => model.ModifiedBy)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.AddedOn)<br>
             @Html.DisplayFor(model => model.AddedOn)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.DisplayNameFor(model => model.LastModifiedOn)<br>
             @Html.DisplayFor(model => model.LastModifiedOn)
         </div>
         <br>
-        <div class="well">
+        <div>
             @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }, new { @class = "btn btn-primary" }) |
             @Html.ActionLink("Delete", "Delete", new { name = Model.BookName }, new { @class = "btn btn-danger" }) |
             @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }, new { @class = "btn btn-warning" }) |
