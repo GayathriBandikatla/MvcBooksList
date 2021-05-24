@@ -41,7 +41,7 @@
                 {
                     <tr>
                         <td>
-                            <a asp-area="" asp-controller="Home" asp-action=""> @Html.DisplayFor(modelItem => item.BookName)</a>
+                            <a asp-area="" asp-controller="ViewBookDetails" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Author)
@@ -65,13 +65,13 @@
             </table>
         </div>
     </div>
-    <div class="container">
+    <div class="container fixed-bot">
         <div class="row">
-            <div class="col-md-2  fixed-bot">
+            <div class="col-md-2">
                 <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
             </div>
 
-            <div class="col-md-2  fixed-bot">
+            <div class="col-md-2">
                 <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Delisted Books</a></b>
             </div>
         </div>
@@ -118,6 +118,17 @@ else
     </div>
 
 }
+<div class="container  fixed-bot">
+    <div class="row">
+        <div class="col-md-2">
+            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">New Book</a></b>
+        </div>
+
+        <div class="col-md-2">
+            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Delisted Books</a></b>
+        </div>
+    </div>
+</div>
 
 
 

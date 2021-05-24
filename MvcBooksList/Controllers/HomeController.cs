@@ -46,5 +46,50 @@ namespace MvcBooksList.Controllers
                 return View(activebooks);
             }
         }
+
+        
+        public ActionResult DeleteBookName(string bookName)
+        {
+          
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44305/");
+
+                //HTTP DELETE
+                var deleteTask = client.DeleteAsync("Book/api/DeleteBookByName?bookName=" + bookName);
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DelistBookName(string bookName)
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44305/");
+
+                //HTTP DELETE
+                var delistTask = client.GetAsync("Book/api/DelistBookByName?bookName=" + bookName);
+                delistTask.Wait();
+
+                var result = delistTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
