@@ -63,10 +63,7 @@
   <br />
 
   <div>
-      @*@Html.ActionLink("Edit", "Edit", new { name = Model.BookName }) |
-        @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }) |
-        @Html.ActionLink("Cancel", "Cancel")*@
-
+      
 
       @{
           string id = Model.BookName.Replace(" ", "-");
@@ -139,8 +136,4 @@
  <h3>No Book with that Name</h3>
  }
 
-@*<script>
-    $('#btnContinueDelete').click(function () {
-    window.location.href = '@Url.Action("Index", "Home")';
-});
-</script>*@
+
