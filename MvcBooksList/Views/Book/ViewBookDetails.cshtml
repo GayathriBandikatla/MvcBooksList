@@ -3,72 +3,72 @@
     ViewData["Title"] = "Book Details";
 }
 
-
+<h3> Book Details</h3>
 @if (Model != null)
 {
+<div>
     <div>
-        <div>
-            @Html.DisplayNameFor(model => model.BookName)
-            @Html.DisplayFor(model => model.BookName)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Author)
-            @Html.DisplayFor(model => model.Author)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Publisher)
-            @Html.DisplayFor(model => model.Publisher)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Price)
-            @Html.DisplayFor(model => model.Price)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Pages)
-            @Html.DisplayFor(model => model.Pages)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Category)
-            @Html.DisplayFor(model => model.Category)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Subcategory)
-            @Html.DisplayFor(model => model.Subcategory)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.AddedBy)
-            @Html.DisplayFor(model => model.AddedBy)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-            @Html.DisplayFor(model => model.ModifiedBy)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.AddedOn)
-            @Html.DisplayFor(model => model.AddedOn)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.LastModifiedOn)
-            @Html.DisplayFor(model => model.LastModifiedOn)
-        </div>
-
-        <div>
-            @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }) |
-            @Html.ActionLink("Delete", "Delete", new { name = Model.BookName }) |
-            @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }) |
-            @Html.ActionLink("Cancel", "Cancel") 
-        </div>
+        @Html.DisplayNameFor(model => model.BookName)<br>
+        @Html.DisplayFor(model => model.BookName)
     </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Author)<br>
+        @Html.DisplayFor(model => model.Author)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Publisher)<br>
+        @Html.DisplayFor(model => model.Publisher)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Price)<br>
+        @Html.DisplayFor(model => model.Price)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Pages)<br>
+        @Html.DisplayFor(model => model.Pages)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Category)<br>
+        @Html.DisplayFor(model => model.Category)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.Subcategory)<br>
+        @Html.DisplayFor(model => model.Subcategory)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.AddedBy)<br>
+        @Html.DisplayFor(model => model.AddedBy)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.ModifiedBy)<br>
+        @Html.DisplayFor(model => model.ModifiedBy)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.AddedOn)<br>
+        @Html.DisplayFor(model => model.AddedOn)
+    </div>
+    <br>
+    <div>
+        @Html.DisplayNameFor(model => model.LastModifiedOn)<br>
+        @Html.DisplayFor(model => model.LastModifiedOn)
+    </div>
+    <br>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }) |
+        @Html.ActionLink("Delete", "Delete", new { name = Model.BookName }) |
+        @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }) |
+        @Html.ActionLink("Cancel", "Cancel")
+    </div>
+</div>
 }
 else
 {
