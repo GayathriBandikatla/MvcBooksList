@@ -133,7 +133,7 @@ namespace MvcBooksList.Controllers
                 }
                 else
                 {
-                    ViewBag.CategoryMessage = "Book Cannot be created now. Try after some time";
+                    ViewBag.CategoryMessage = "SubCategory cannot be created now. Try after some time";
                 }
             }
                 return RedirectToAction("Index");

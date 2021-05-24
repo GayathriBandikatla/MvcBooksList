@@ -6,11 +6,14 @@
 
 
 <div>
-    <h4>@Html.DisplayFor(model => model.CategoryName)</h4>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Edit
-    </button>
+    <div class="row align-content-between">
+
+        <h4 class=" col-10">@Html.DisplayFor(model => model.CategoryName)</h4>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-primary col-2" data-toggle="modal" data-target="#exampleModalCenter">
+            Edit
+        </button>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -74,7 +77,7 @@
 
 @*@Html.Partial("AddSubCategory", Model.CategoryName)*@
 
-@if (Model.SubCategories !=null)
+@if (Model.SubCategories != null)
 {
 
     <div class="container">
@@ -114,13 +117,13 @@
 
     </div>
 }
-            else
-            {
-                <h3>No Sub Categories!</h3>
-            }
+else
+{
+    <h3>No Sub Categories!</h3>
+}
 
 
 <div>
     @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back </a>
 </div>
