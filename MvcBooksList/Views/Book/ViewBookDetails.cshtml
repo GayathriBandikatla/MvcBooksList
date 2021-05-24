@@ -65,8 +65,8 @@
         <br>
         <div>
             @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Delete", "Delete", new { name = Model.BookName }, new { @class = "btn btn-danger" }) |
-            @Html.ActionLink("Delist", "Delist", new { name = Model.BookName }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "DeleteBookName","Home", new { bookName = Model.BookName }, new { @class = "btn btn-danger" }) |
+            @Html.ActionLink("Delist", "DelistBookName","Home", new { bookName = Model.BookName }, new { @class = "btn btn-warning" }) |
             @Html.ActionLink("Cancel", "Cancel", new { @class = "btn btn-secondary" })
         </div>
     </div>

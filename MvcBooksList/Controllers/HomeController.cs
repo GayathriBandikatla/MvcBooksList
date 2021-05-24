@@ -78,7 +78,7 @@ namespace MvcBooksList.Controllers
                 client.BaseAddress = new Uri("https://localhost:44305/");
 
                 //HTTP DELETE
-                var delistTask = client.GetAsync("Book/api/DelistBookByName?bookName=" + bookName);
+                var delistTask = client.PostAsync("Book/api/DelistBookByName?bookName=" + bookName,null);
                 delistTask.Wait();
 
                 var result = delistTask.Result;
