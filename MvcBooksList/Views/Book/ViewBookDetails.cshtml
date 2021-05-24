@@ -63,13 +63,73 @@
             @Html.DisplayFor(model => model.LastModifiedOn)
         </div>
         <br>
-        <div>
-            @Html.ActionLink("Edit", "Edit", new { name = Model.BookName }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Delete", "DeleteBookName","Home", new { bookName = Model.BookName }, new { @class = "btn btn-danger" }) |
-            @Html.ActionLink("Delist", "DelistBookName","Home", new { bookName = Model.BookName }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Cancel", "Cancel", new { @class = "btn btn-secondary" })
+        <button type="button" class="btn btn-dark">
+            Edit
+        </button>
+        @{
+            string id = Model.BookName.Replace(" ", "-");
+        }
+        <!-- Button trigger modal -->
+
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@id">
+            Delete
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Book</h5>
+                    </div>
+                    <form asp-controller="Home" asp-action="DeleteBookName" method="get">
+                        <div class="modal-body">
+                            Do you want to delete this book @Model.BookName?
+                            <input type="hidden" name="bookName" value="@Model.BookName" />
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="submit" class="btn btn-dark">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@id">
+            Delist
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Delist Book</h5>
+                    </div>
+                    <form asp-controller="Home" asp-action="DelistBookName" method="get">
+                        <div class="modal-body">
+                            Do you want to delist this book @Model.BookName?
+                            <input type="hidden" name="bookName" value="@Model.BookName" />
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="submit" class="btn btn-dark">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form asp-controller="Home" asp-action="Index" method="get">
+            <button type="submit" class="btn btn-dark">
+                Cancel
+            </button>
+        </form>
     </div>
+
 }
 else
 {
