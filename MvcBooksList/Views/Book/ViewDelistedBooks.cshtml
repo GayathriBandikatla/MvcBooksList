@@ -1,65 +1,67 @@
 ﻿@model List<MvcBooksList.Models.Book>
 @{
-    ViewData["Title"] = "Delisted Books";
+    ViewData["Title"] = "Virtual Book Store | Delisted Book";
 }
 
-
+<h2><b class="align1">Delisted Books</b><br /></h2>
+<br />
 
 @if (Model != null)
 {
     @using (Html.BeginForm("DelistedForm", "Book", FormMethod.Post))
     {
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].BookName)
-            </th>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].BookName)
+                    </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model[0].Author)
-            </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].Author)
+                    </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model[0].Publisher)
-            </th>
-            <th>
-                Enlist
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (int i = 0; i < Model.Count(); i += 1)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model[i].BookName)
-                @Html.HiddenFor(model => model[i].BookName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model[i].Author)
-                @Html.HiddenFor(model => model[i].Author)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model[i].Publisher)
-                @Html.HiddenFor(model => model[i].Publisher)
+                    <th>
+                        @Html.DisplayNameFor(model => model[0].Publisher)
+                    </th>
+                    <th>
+                        Enlist
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i += 1)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model[i].BookName)
+                            @Html.HiddenFor(model => model[i].BookName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model[i].Author)
+                            @Html.HiddenFor(model => model[i].Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model[i].Publisher)
+                            @Html.HiddenFor(model => model[i].Publisher)
 
-            </td>
-            <td>
-                @Html.CheckBoxFor(model => model[i].IsActive)
-            </td>
-        </tr>
-        }
-        </tbody>
-    </table>
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(model => model[i].IsActive)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-        <input type="submit" value="Save" />    <input type = "button" value = "Cancel" onclick = "location.href='@Url.Action("Index", "Home")'" />
-
-        }
+        <input type="submit" value="Save" />
+        <input type="button" value="Cancel" onclick="location.href='@Url.Action("Index", "Home")'" />
 
     }
-    else
-    {
+
+}
+else
+{
     <h3>No Books currently delisted</h3>
 }
 
