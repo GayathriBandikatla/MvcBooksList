@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
@@ -47,10 +49,10 @@ namespace MvcBooksList.Controllers
             }
         }
 
-        
+
         public ActionResult DeleteBookName(string bookName)
         {
-          
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44305/");
@@ -77,7 +79,7 @@ namespace MvcBooksList.Controllers
             {
                 client.BaseAddress = new Uri("https://localhost:44305/");
 
-                //HTTP DELETE
+                //HTTP DELIST
                 var delistTask = client.GetAsync("Book/api/DelistBookByName?bookName=" + bookName);
                 delistTask.Wait();
 
@@ -91,5 +93,32 @@ namespace MvcBooksList.Controllers
 
             return RedirectToAction("Index");
         }
+       [HttpPost]
+        public ActionResult AddBookDetails(Book value)
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44305/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<Book>("Book/api/AddBook", value);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+          public ActionResult Create()
+          {
+            return View("AddBook");
+          }
+     
     }
 }
+
+        
