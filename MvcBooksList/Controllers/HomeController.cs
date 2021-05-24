@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
@@ -90,6 +91,30 @@ namespace MvcBooksList.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult AddBookDetails(Book value)
+        {
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44305/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<Book>("Book/api/AddBook", value);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult Create()
+        {
+            return View("AddBook");
         }
     }
 }
