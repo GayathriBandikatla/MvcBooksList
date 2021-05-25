@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MvcBooksList.jwt;
 using MvcBooksList.Models;
 using Newtonsoft.Json;
 using System;
@@ -17,6 +18,12 @@ namespace MvcBooksList.Controllers
     {
         //Hosted web API REST Service base url  
         string Baseurl = "https://localhost:44305/";
+        string token;
+        JWTToken jwttokenProvider = new JWTToken();
+        public HomeController()
+        {
+            token = jwttokenProvider.generateJwtToken("user43");
+        }
         public async Task<ActionResult> Index()
         {
             List<Book> activebooks = new List<Book>();
@@ -96,8 +103,12 @@ namespace MvcBooksList.Controllers
         public ActionResult AddBookDetails(Book value)
         {
 
+
+
+
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = new Uri("https://localhost:44305/");
 
                 //HTTP POST
