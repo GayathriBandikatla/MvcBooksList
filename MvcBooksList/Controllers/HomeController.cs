@@ -2,12 +2,14 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MvcBooksList.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
@@ -49,38 +51,33 @@ namespace MvcBooksList.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdateBookDetails(Book b)
+        public async Task<ActionResult> EditBookDetails(string id)
         {
+            Book b = new Book();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44305/");
-
-                var postTask = client.PostAsJsonAsync<Book>("Book/api/ViewBooks", b);
-                postTask.Wait();
-
-                var res = postTask.Result;
-                if (res.IsSuccessStatusCode)
+                using (var response = await client.GetAsync("https://localhost:44305/api/EditBookDetails/ViewBookByName?name=" + id))
                 {
-                    return RedirectToAction("EditBookDetails");
+                    string apiRes = await response.Content.ReadAsStringAsync();
+                    b = JsonConvert.DeserializeObject<Book>(apiRes);
                 }
             }
-            return RedirectToAction("EditBookDetails");
+            return View(b);
         }
 
         [HttpPost]
-        public ActionResult EditBookDetails(Book b)
+        public async Task<ActionResult> EditBookDetails(string id, Book b)
         {
+            Book bo = new Book();
+
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44305/");
-
-                var postTask = client.PostAsJsonAsync<Book>("Book/api/EditBookDetails", b);
-                postTask.Wait();
-
-                var res = postTask.Result;
-                if(res.IsSuccessStatusCode)
+                StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "aplication/json");
+                using (var response = await client.PutAsync("https://localhost:44305/api/EditBookDetails/" + id, content))
                 {
-                    return RedirectToAction("Index");
+                    string apiRes = await response.Content.ReadAsStringAsync();
+                    ViewBag.Result = "Success";
+                    bo = JsonConvert.DeserializeObject<Book>(apiRes);
                 }
             }
             return RedirectToAction("Index");
