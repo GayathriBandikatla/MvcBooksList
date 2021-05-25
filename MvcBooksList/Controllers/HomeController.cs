@@ -29,7 +29,9 @@ namespace MvcBooksList.Controllers
         {
             baseaddressofbookapi = new Uri(configuration.GetSection("ApiAddress:BookAPi").Value);
             baseaddressofCategoryapi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
-            token = jwttokenProvider.generateJwtToken("user43");
+            string name = Environment.UserName;
+            token = jwttokenProvider.generateJwtToken(name);
+            
         }
 
 
@@ -42,6 +44,8 @@ namespace MvcBooksList.Controllers
         public async Task<ActionResult> Index()
 
         {
+            string username = User.Identity.Name;
+
             List<Book> activebooks = new List<Book>();
 
             using (var client = new HttpClient())
