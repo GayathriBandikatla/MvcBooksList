@@ -63,9 +63,14 @@
             @Html.DisplayFor(model => model.LastModifiedOn)
         </div>
         <br>
-        <button type="button" class="btn btn-dark">
-            Edit
-        </button>
+        <form asp-action="EditBookDetails" asp-controller="Home" method="get">
+            <input type="hidden" name="id" value="@Model.BookName" />
+            <button type="submit" class="btn btn-dark">
+                Edit
+            </button>
+        </form>
+       
+        
         @{
             string id = Model.BookName.Replace(" ", "-");
         }

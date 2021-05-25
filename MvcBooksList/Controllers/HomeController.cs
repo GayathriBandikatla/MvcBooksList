@@ -22,16 +22,15 @@ namespace MvcBooksList.Controllers
     {
 
 
-        //readonly Uri baseAddressOfBookApi;
-        //public HomeController(IConfiguration configuration)
-        //{
-        //    baseAddressOfBookApi = new Uri(configuration.GetSection("ApiAddress:BookAPi").Value);
-        //}
+        readonly Uri baseaddressofbookapi;
+        readonly Uri baseaddressofCategoryapi;
+        public HomeController(IConfiguration configuration)
+        {
+            baseaddressofbookapi = new Uri(configuration.GetSection("ApiAddress:BookAPi").Value);
+            baseaddressofCategoryapi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
+        }
 
 
-//         private List<Book> bookview;
-//         public HomeController()
-// =======
         //Hosted web API REST Service base url  
         string Baseurl = "https://localhost:44305/";
         public async Task<ActionResult> Index()
@@ -66,13 +65,13 @@ namespace MvcBooksList.Controllers
             }
         }
 
-        
+
         public ActionResult DeleteBookName(string bookName)
         {
-          
+
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44305/");
+                client.BaseAddress = baseaddressofbookapi;
 
                 //HTTP DELETE
                 var deleteTask = client.DeleteAsync("Book/api/DeleteBookByName?bookName=" + bookName);
@@ -94,10 +93,10 @@ namespace MvcBooksList.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44305/");
+                client.BaseAddress = baseaddressofbookapi;
 
                 //HTTP DELETE
-                var delistTask = client.PostAsync("Book/api/DelistBookByName?bookName=" + bookName,null);
+                var delistTask = client.PostAsync("Book/api/DelistBookByName?bookName=" + bookName, null);
                 delistTask.Wait();
 
                 var result = delistTask.Result;
@@ -116,7 +115,7 @@ namespace MvcBooksList.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44305/");
+                client.BaseAddress = baseaddressofbookapi;
 
                 //HTTP POST
                 var postTask = client.PostAsJsonAsync<Book>("Book/api/AddBook", value);
@@ -141,13 +140,16 @@ namespace MvcBooksList.Controllers
             Book b = new Book();
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:44305/api/EditBookDetails/ViewBookByName?name=" + id))
+                client.BaseAddress = baseaddressofbookapi;
+
+                using (var response = await client.GetAsync("Book/GetBookByName?bookName=" + id))
                 {
                     string apiRes = await response.Content.ReadAsStringAsync();
                     b = JsonConvert.DeserializeObject<Book>(apiRes);
                 }
             }
-            return View(b);
+            return View("EditDetails", b);
+
         }
 
         [HttpPost]
@@ -157,20 +159,18 @@ namespace MvcBooksList.Controllers
 
             using (var client = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "aplication/json");
-                using (var response = await client.PutAsync("https://localhost:44305/api/EditBookDetails/" + id, content))
+                client.BaseAddress = baseaddressofbookapi;
+                StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "application/json");
+                var response = await client.PutAsync("Book/EditBookDetails?id=" + id, content);
+                if (response.IsSuccessStatusCode)
                 {
                     string apiRes = await response.Content.ReadAsStringAsync();
                     ViewBag.Result = "Success";
-                    bo = JsonConvert.DeserializeObject<Book>(apiRes);
+                    // bo = JsonConvert.DeserializeObject<Book>(apiRes);
                 }
             }
             return RedirectToAction("Index");
         }
-        
-        public ActionResult Edit()
-        {
-            return View("EditBookDetails");
-        }
+
     }
 }

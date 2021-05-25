@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Home" asp-action="EditBookDetails">
+        <form asp-controller="Home" asp-action="EditBookDetails" asp-route-id="@Model.BookName">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="BookName" class="control-label"></label>
