@@ -1,12 +1,15 @@
 ﻿@model MvcBooksList.Models.Book
 
+
 @{ ViewData["Title"] = "Edit Book Details"; }
+
+<h1>Virtual Book Store</h1>
 
 <h4>Edit Book Details</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Home" asp-action="EditBookDetails" method="post">
+        <form asp-controller="Home" asp-action="EditBookDetails">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="BookName" class="control-label"></label>
@@ -42,7 +45,7 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
             <div class="form-group">
-                <input type="reset" asp-action="Index" value="Cancel" class="btn btn-danger" />
+                <input type="reset" asp-action="Index" value="Cancel" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Book")'"/>
             </div>
         </form>
     </div>
