@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace MvcBooksList.Controllers
 {
-    [Authorize]
+    
     public class CategoryController : Controller
     {
         readonly Uri baseAddressOfCategoryApi;

@@ -17,3 +17,43 @@ $(document).ready(function () {
 
     // document ready  
 });
+
+$('#Category').change(function () {
+    document.getElementById("Subcategory").innerHTML = "";
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44350/Category/" + $('#Category').val(),
+        dataType: "text/plain",
+        crossDomain: true,
+        success: function (a,b,c) {
+            console.log(a);
+            console.log(b);
+            console.log(c);
+            
+        },
+        error: function (e) {
+            console.log(e.responseText);
+            var list = JSON.parse(e.responseText);
+            console.log(typeof (list));
+            for (var subcat in list) {
+                $('#Subcategory').append('<option value="' + list[subcat] + '" > ' + list[subcat] + '</option > ')
+
+            }
+        }
+
+    })
+});
+
+
+
+//$('#Category').change(function () {
+//    $('#Subcategory').remove();
+//    $.getJSON('https://localhost:44350/Category/', { categoryName: $('#category').val() }, function (data) {
+//        $.each(data, function () {
+//            $('#Subcategory').append('<option value=' +
+//                this.ProductID + '>' + this.ProductName + '</option>');
+//        });
+//    }).fail(function (jqXHR, textStatus, errorThrown) {
+//        alert('Error getting products!');
+//    });
+//});

@@ -16,6 +16,7 @@ using System.Text;
 using System.Net.Http.Headers;
 
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MvcBooksList.Controllers
 {
@@ -141,8 +142,29 @@ namespace MvcBooksList.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseaddressofCategoryapi;
+                var response =await client.GetAsync("Category");
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    List<string> categories = JsonConvert.DeserializeObject<List<string>>(result);
+                    List<SelectListItem> selectListItems = new List<SelectListItem>();
+                foreach(string category in categories)
+                    {
+                        selectListItems.Add(new SelectListItem { Value = category, Text = category });
+
+                    }
+                    ViewBag.Categories = selectListItems;
+                }
+            }
+
+
+
             return View("AddBook");
         }
 
@@ -158,6 +180,46 @@ namespace MvcBooksList.Controllers
                 {
                     string apiRes = await response.Content.ReadAsStringAsync();
                     b = JsonConvert.DeserializeObject<Book>(apiRes);
+                }
+            }
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseaddressofCategoryapi;
+                var response = await client.GetAsync("Category");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    List<string> categories = JsonConvert.DeserializeObject<List<string>>(result);
+                    List<SelectListItem> selectListItems = new List<SelectListItem>();
+                    foreach (string category in categories)
+                    {
+                        if(category==b.Category)
+                            selectListItems.Add(new SelectListItem { Selected=true, Value = category, Text = category  });
+                        else
+                            selectListItems.Add(new SelectListItem {  Value = category, Text = category  });
+
+                    }
+                    ViewBag.Categories = selectListItems;
+                }
+            }
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseaddressofCategoryapi;
+                var response = await client.GetAsync("Category/"+b.Category);
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    List<string> subcategories = JsonConvert.DeserializeObject<List<string>>(result);
+                    List<SelectListItem> selectListItems = new List<SelectListItem>();
+                    foreach (string subcategory in subcategories)
+                    {
+                        if(subcategory==b.Subcategory)
+                            selectListItems.Add(new SelectListItem { Selected=true, Value = subcategory, Text = subcategory  });
+                        else
+                            selectListItems.Add(new SelectListItem {  Value = subcategory, Text = subcategory  });
+
+                    }
+                    ViewBag.Subcategories = selectListItems;
                 }
             }
             return View("EditDetails", b);
