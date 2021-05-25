@@ -66,19 +66,21 @@
 
 
             @{
+                string idforDelsit = Model.BookName.Replace(" ", "-");
                 string id = Model.BookName.Replace(" ", "-");
+                idforDelsit += "Delist";
             }
             <button type="button" class="btn btn-dark">
                 Edit
             </button>
             <!-- Button trigger modal -->
 
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@id">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@idforDelsit">
                 Delete
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="@idforDelsit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-light">
@@ -99,6 +101,7 @@
                     </div>
                 </div>
             </div>
+
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@id">
                 Delist
             </button>

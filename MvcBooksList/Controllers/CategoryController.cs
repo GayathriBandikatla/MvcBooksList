@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MvcBooksList.jwt;
 using MvcBooksList.Models;
 using Newtonsoft.Json;
 using System;
@@ -16,21 +17,28 @@ namespace MvcBooksList.Controllers
     public class CategoryController : Controller
     {
         readonly Uri baseAddressOfCategoryApi;
+        
+        readonly string token ;
+
         public CategoryController(IConfiguration configuration)
         {
             baseAddressOfCategoryApi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
+            JWTToken jwttokenProvider = new JWTToken();
+            token = jwttokenProvider.generateJwtToken("user43");
         }
         // GET: CategoryController
         public async Task<ActionResult> Index()
         {
             List<Category> categories;
 
+           
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = baseAddressOfCategoryApi;
 
                 // TO add token to header in future.
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
 
                 var resopnse = await client.GetAsync("api/AdminCategory");
                 if (resopnse.IsSuccessStatusCode)
@@ -53,7 +61,7 @@ namespace MvcBooksList.Controllers
                 client.BaseAddress = baseAddressOfCategoryApi;
 
                 // TO add token to header in future.
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
                 var resopnse = await client.GetAsync("api/AdminCategory/" + categoryName);
                 if (resopnse.IsSuccessStatusCode)
                 {
@@ -72,7 +80,7 @@ namespace MvcBooksList.Controllers
                 client.BaseAddress = baseAddressOfCategoryApi;
 
                 // TO add token to header in future.
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
                 HttpContent putContent = new StringContent(categoryName);
                 
                 var resopnse = await client.PutAsync($"api/AdminCategory/{oldName}/{categoryName}",null);
@@ -90,7 +98,7 @@ namespace MvcBooksList.Controllers
                 client.BaseAddress = baseAddressOfCategoryApi;
 
                 // TO add token to header in future.
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer","Token");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
                 HttpContent putContent = new StringContent(subCategoryName);
                 
                 var resopnse = await client.PutAsync($"api/AdminSubCategory/{categoryName}/{oldName}/{subCategoryName}",null);
@@ -122,6 +130,7 @@ namespace MvcBooksList.Controllers
             };
             using (HttpClient client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.BaseAddress = baseAddressOfCategoryApi;
                 HttpContent httpContent = new StringContent(content: JsonConvert.SerializeObject(data), encoding: Encoding.Default, mediaType: "application/json");
                 var resopnse = await client.PostAsync("api/AdminSubCategory", httpContent);
@@ -156,6 +165,7 @@ namespace MvcBooksList.Controllers
 
                 HttpContent httpContent = new StringContent(content: JsonConvert.SerializeObject(categoryName), encoding: Encoding.Default, mediaType: "application/json");
                 client.BaseAddress = baseAddressOfCategoryApi;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var resopnse = await client.PostAsync("api/AdminCategory", httpContent);
                 if (resopnse.IsSuccessStatusCode)
                 {

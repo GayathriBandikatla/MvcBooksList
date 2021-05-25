@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MvcBooksList.jwt;
 using MvcBooksList.Models;
 using Newtonsoft.Json;
 using System;
@@ -28,11 +29,16 @@ namespace MvcBooksList.Controllers
         {
             baseaddressofbookapi = new Uri(configuration.GetSection("ApiAddress:BookAPi").Value);
             baseaddressofCategoryapi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
+            token = jwttokenProvider.generateJwtToken("user43");
         }
 
 
         //Hosted web API REST Service base url  
         string Baseurl = "https://localhost:44305/";
+        string token;
+        JWTToken jwttokenProvider = new JWTToken();
+        
+        
         public async Task<ActionResult> Index()
 
         {
@@ -115,6 +121,8 @@ namespace MvcBooksList.Controllers
 
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                client.BaseAddress = new Uri("https://localhost:44305/");
                 client.BaseAddress = baseaddressofbookapi;
 
                 //HTTP POST
@@ -160,6 +168,7 @@ namespace MvcBooksList.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = baseaddressofbookapi;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "application/json");
                 var response = await client.PutAsync("Book/EditBookDetails?id=" + id, content);
                 if (response.IsSuccessStatusCode)
