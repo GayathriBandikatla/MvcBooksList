@@ -3,78 +3,103 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="css\CategoryIndexPage.css" type="text/css" />
 
-<h1>Index</h1>
+<div class="container">
+    <form asp-action="Create" method="post">
+        <div class="row">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+            <div class="form-group">
+                <div class="col-auto">
+
+
+                    <input class="form-control" placeholder="Create new Category" name="categoryName" id="categoryName" />
+                </div>
+            </div>
+            <div class="btn-group">
+
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-success" value="Create" />
+                </div>
+                <div class="col-auto">
+                    <input type="reset" class="btn btn-secondary" value="Reset" />
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+
+</div>
+
 
 @if (Model != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoryName)
-                </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.AddedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AddedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModifiedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ModifiedOn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubCategories)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AddedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ModifiedOn)
-                    </td>
-                    <td>
-                        @foreach(SubCategory subCategory in item.SubCategories)
-                    {
-                        @Html.DisplayFor(s=>subCategory.SubCategoryName) 
-                    }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="row">
+
+
+        @foreach (Category item in Model)
+        {
+            <div class="col-lg-4 col-xl-4 col-sm-12 col-md-6">
+                <div class="card shadow-sm  mb-5 bg-white rounded" style="width: 100%; ">
+                    <a class="text-decoration-none text-dark" asp-action="Details" asp-controller="Category" asp-route-categoryName="@item.CategoryName" class="card-link">
+
+
+
+                        <h4 class="card-header text-center">@Html.DisplayFor(m => item.CategoryName)</h4>
+
+
+                        @if (item.SubCategories != null && item.SubCategories.Count > 0)
+                        {
+                            <div class="card-body align-content-end pre-scrollable hidden-scrollbar" style="height: 10rem;">
+
+
+                                <ul>
+
+
+                                    @foreach (SubCategory subCategory in item.SubCategories)
+                                    {
+                                        <li>
+                                            @Html.DisplayFor(d => subCategory.SubCategoryName)
+
+                                        </li>
+
+                                    }
+                                </ul>
+
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-body" style="height: 10rem;">
+                                <p>No sub Categories!</p>
+                            </div>
+                        }
+                    </a>
+
+
+
+                    <div class="card-footer align-items-center text-justify">
+                        @Html.Partial("AddSubCategory", item.CategoryName)
+
+                        @*<input class="btn btn-secondary" type="button" value="Add SubCategory" />*@
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+
 
 }
+
 else
 {
     <h3>No Categories present</h3>
 }
+
 
