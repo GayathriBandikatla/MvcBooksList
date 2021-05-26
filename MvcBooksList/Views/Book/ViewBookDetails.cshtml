@@ -10,62 +10,182 @@
 <br />
 @if (Model != null)
 {
-<div class="well">
-    <div>
-        @Html.DisplayNameFor(model => model.BookName)<br>
-        @Html.DisplayFor(model => model.BookName)
+    <div class="well border border-5 border-dark p-md-3 ">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Book Name</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Book.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.BookName)</i></b></span>
+                    </div>
+                </div>
+            </div>
+            @*@Html.DisplayNameFor(model => model.Author)<br>*@
+        <div class="col-lg-4 ml-lg-3">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Author</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Author.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.Author)</i></b></span>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-lg-4">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Publisher</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Publisher.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Publisher)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="m-5 pr-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Price</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/price.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Price)</i></b></span>
+                    </div>
+                </div>
+                @*@Html.DisplayNameFor(model => model.Price)<br>*@
+
+            </div>
+
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Pages</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Pages.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Pages)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Category</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Category.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Category)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-5 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Subcategory</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Subcategory.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Subcategory)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Added By</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedBy.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.AddedBy)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Modified By</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/ModifiedBy.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.ModifiedBy)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Added On</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedOn.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.AddedOn)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-5 pr-3 pl-3">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Modified On</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedOn.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.LastModifiedOn)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Author)<br>
-        @Html.DisplayFor(model => model.Author)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Publisher)<br>
-        @Html.DisplayFor(model => model.Publisher)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Price)<br>
-        @Html.DisplayFor(model => model.Price)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Pages)<br>
-        @Html.DisplayFor(model => model.Pages)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Category)<br>
-        @Html.DisplayFor(model => model.Category)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.Subcategory)<br>
-        @Html.DisplayFor(model => model.Subcategory)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.AddedBy)<br>
-        @Html.DisplayFor(model => model.AddedBy)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.ModifiedBy)<br>
-        @Html.DisplayFor(model => model.ModifiedBy)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.AddedOn)<br>
-        @Html.DisplayFor(model => model.AddedOn)
-    </div>
-    <br>
-    <div>
-        @Html.DisplayNameFor(model => model.LastModifiedOn)<br>
-        @Html.DisplayFor(model => model.LastModifiedOn)
-    </div>
-    <br>
+    <br/>
     <div class="btn-group">
 
         <div>
@@ -142,11 +262,11 @@
         </form>
 
     </div>
-    </div>
-    
 
-    }
-    else
-    {
+
+
+}
+else
+{
     <h3>No Book with that Name</h3>
-    }
+}
