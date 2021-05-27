@@ -3,6 +3,21 @@
     ViewData["Title"] = "Virtual Book Store | Books";
 }
 
+<div class="row justify-content-between">
+    <div class="col-auto">
+        <h2><b class="align1">Books</b><br /></h2>
+    </div>
+    <div>
+        
+            <a class="btn btn-outline-primary" asp-area="" asp-controller="Home" asp-action="Create">Add New Book</a>
+        
+       
+          <a class="btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="ViewDelistedBooks">Show Delisted Books</a>
+      
+    </div>
+</div>
+<br />
+
 @if (Model != null)
 {
     // <b> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">New Book</a></b>
@@ -11,11 +26,11 @@
     <div class="form-horizontal bg3">
 
 
-        <h2><b class="align1">Books</b><br /></h2><br />
+
         <div class="form-group">
 
 
-            <table class="table table-hover">
+            <table class="table table-hover Custom-finger">
                 <tr class="bg-dark text-white-50">
                     <th>
                         @Html.DisplayNameFor(model => model.BookName)
@@ -42,28 +57,30 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        
-                            <td>
-                                <a class="text-dark text-info" asp-area="" asp-controller="Book" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Author)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Subcategory)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Publisher)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
 
-                        
+                    <tr onclick="location.href = '@Url.Action("ViewBookDetails", "Home", new { BookName = item.BookName })'">
+
+                        <td>
+                             @Html.DisplayFor(modelItem => item.BookName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        @{ string price = "$" + item.Price.ToString(); }
+                        <td>
+                            @price
+                        </td>
+
+
                     </tr>
 
                 }
@@ -77,55 +94,12 @@
 }
 else
 {
-    <div class="form-group">
 
-        <table class="table table-hover clr">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.BookName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Author)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Subcategory)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Publisher)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
+    <h3 class="newcls">No Books Available</h3>
 
-
-
-            </tr>
-
-
-        </table>
-
-        <h3 class="newcls">No Books Available</h3>
-
-
-
-    </div>
 
 }
-<div class="container fixed-bot">
-    <div class="row">
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Create">New Book</a></b>
-        </div>
 
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Book" asp-action="ViewDelistedBooks">Delisted Books</a></b>
-        </div>
-    </div>
-
-</div>
 
 
 

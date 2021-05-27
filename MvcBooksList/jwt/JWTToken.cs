@@ -11,6 +11,7 @@ namespace MvcBooksList.jwt
 {
     public class JWTToken
     {
+        
         public string generateJwtToken(string username, string password=null)
         {
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TheSecurityKeyOfThisApplicaiton"));
@@ -20,8 +21,6 @@ namespace MvcBooksList.jwt
             claims.Add(new Claim(ClaimTypes.Name, username));
 
             JwtSecurityToken token = new JwtSecurityToken(
-                issuer: "123",
-                audience: "456",
                 claims: claims,
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: credentials);

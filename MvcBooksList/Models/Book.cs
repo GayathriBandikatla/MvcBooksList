@@ -17,7 +17,7 @@ namespace MvcBooksList.Models
         public int Pages { get; set; }
         public string AddedBy { get; set; }
         public string ModifiedBy { get; set; }
-        public DateTime AddedOn { get; set; }
-        public DateTime LastModifiedOn { get; set; }
+        public DateTime? AddedOn { get; set; }
+        public DateTime? LastModifiedOn { get; set; }
     }
 }
