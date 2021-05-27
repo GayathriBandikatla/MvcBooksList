@@ -30,7 +30,7 @@
         <div class="form-group">
 
 
-            <table class="table table-hover">
+            <table class="table table-hover Custom-finger">
                 <tr class="bg-dark text-white-50">
                     <th>
                         @Html.DisplayNameFor(model => model.BookName)
@@ -57,10 +57,11 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    
+                    <tr onclick="location.href = '@Url.Action("ViewBookDetails", "Home", new { BookName = item.BookName})'">
 
                         <td>
-                            <a class="text-dark text-info" asp-area="" asp-controller="Home" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
+                             @Html.DisplayFor(modelItem => item.BookName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Author)
