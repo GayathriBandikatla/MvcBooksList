@@ -247,5 +247,99 @@ namespace MvcBooksList.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<ActionResult> ViewBookDetailsAsync(string BookName)
+        {
+            string Baseurl = "https://localhost:44305/";
+            Book bookdetails = new Book();
+
+            using (var client = new HttpClient())
+            {
+                //Passing service base url  
+                client.BaseAddress = new Uri(Baseurl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource Bookdetails using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("Book/GetBookByName?bookName=" + BookName);
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var BooksResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the bookdetails list  
+                    bookdetails = JsonConvert.DeserializeObject<Book>(BooksResponse);
+
+                }
+                return View("ViewBookDetails", bookdetails);
+
+            }
+        }
+
+        public async Task<ActionResult> ViewDelistedBooks()
+        {
+            List<Book> bookdetails = new List<Book>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = baseaddressofbookapi;
+                var response = await client.GetAsync("Book/ViewDelistedBooks");
+                if (response.IsSuccessStatusCode)
+                {
+                    var BookResponse = response.Content.ReadAsStringAsync().Result;
+                    bookdetails = JsonConvert.DeserializeObject<List<Book>>(BookResponse);
+                }
+            }
+            return View(bookdetails);
+        }
+
+        public ActionResult Cancel()
+        {
+            return View("~/Views/Home/Index.cshtml");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DelistedForm(IEnumerable<Book> fromDelist)
+        {
+            foreach (var item in fromDelist)
+            {
+                if (item.IsActive == true)
+                //CALL
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        client.BaseAddress = baseaddressofbookapi;
+                        StringContent content = new StringContent(JsonConvert.SerializeObject(null), Encoding.UTF8, "application/json");
+                        var response = await client.PutAsync("Book/EnlistBook?id=" + item.BookName.ToString(), content);
+
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
     }
 }

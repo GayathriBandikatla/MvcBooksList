@@ -45,7 +45,7 @@
                     <tr>
                         
                             <td>
-                                <a class="text-dark text-info" asp-area="" asp-controller="Book" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
+                                <a class="text-dark text-info" asp-area="" asp-controller="Home" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Author)
@@ -121,7 +121,7 @@ else
         </div>
 
         <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Book" asp-action="ViewDelistedBooks">Delisted Books</a></b>
+            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ViewDelistedBooks">Delisted Books</a></b>
         </div>
     </div>
 
