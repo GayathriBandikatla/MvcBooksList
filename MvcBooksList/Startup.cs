@@ -32,13 +32,11 @@ namespace MvcBooksList
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
-                        ValidIssuer ="123",
-                        ValidAudience="456",
-                        IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TheSecurityKeyOfThisApplicaiton"))
+                        IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MyData:JwtKey"))
                     };
 
                 });
