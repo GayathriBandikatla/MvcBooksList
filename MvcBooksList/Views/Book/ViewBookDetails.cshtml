@@ -10,24 +10,25 @@
 <br />
 @if (Model != null)
 {
-    <div class="well border border-5 border-dark p-md-3 ">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Book Name</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/Book.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+<div class="well border border-5 border-dark p-md-3 ">
+    <div class="row">
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Book Name</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Book.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
 
-                        <span><b><i>@Html.DisplayFor(model => model.BookName)</i></b></span>
-                    </div>
+                    <span><b><i>@Html.DisplayFor(model => model.BookName)</i></b></span>
                 </div>
             </div>
-            @*@Html.DisplayNameFor(model => model.Author)<br>*@
-        <div class="col-lg-4 ml-lg-3">
+        </div>
+        &nbsp
+        @*@Html.DisplayNameFor(model => model.Author)<br>*@
+        <div class="m-lg-auto">
             <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
                 <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
                     <span><b>Author</b></span>
@@ -41,151 +42,161 @@
                 </div>
             </div>
         </div>
-
-            <div class="col-lg-4">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Publisher</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/Publisher.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.Publisher)</i></b></span>
-                    </div>
+        &nbsp
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Publisher</b></span>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="m-5 pr-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Price</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/price.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.Price)</i></b></span>
-                    </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Publisher.jpg" /></span>
                 </div>
-                @*@Html.DisplayNameFor(model => model.Price)<br>*@
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
 
-            </div>
-
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Pages</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/Pages.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.Pages)</i></b></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Category</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/Category.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.Category)</i></b></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-5 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Subcategory</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/Subcategory.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.Subcategory)</i></b></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Added By</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/AddedBy.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.AddedBy)</i></b></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Modified By</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/ModifiedBy.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.ModifiedBy)</i></b></span>
-                    </div>
-                </div>
-            </div>
-        
-        
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Added On</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/AddedOn.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.AddedOn)</i></b></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-5 pr-3 pl-3">
-                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                        <span><b>Modified On</b></span>
-                    </div>
-                    <div class="a-section a-spacing-small a-text-center">
-                        <span><img src="~/Images/AddedOn.jpg" /></span>
-                    </div>
-                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                        <span><b><i>@Html.DisplayFor(model => model.LastModifiedOn)</i></b></span>
-                    </div>
+                    <span><b><i>@Html.DisplayFor(model => model.Publisher)</i></b></span>
                 </div>
             </div>
         </div>
     </div>
-    <br/>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Price</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/price.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.Price)</i></b></span>
+                </div>
+            </div>
+            @*@Html.DisplayNameFor(model => model.Price)<br>*@
+
+        </div>
+        &nbsp
+
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Pages</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Pages.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.Pages)</i></b></span>
+                </div>
+            </div>
+        </div>
+        &nbsp
+
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Category</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Category.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.Category)</i></b></span>
+                </div>
+            </div>
+        </div>
+        &nbsp
+
+        <div class="m-lg-auto">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Subcategory</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/Subcategory.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.Subcategory)</i></b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="m-lg-auto pl-4">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Added By</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/AddedBy.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.AddedBy)</i></b></span>
+                </div>
+            </div>
+        </div>
+        &nbsp
+        <div class="m-lg-auto pl-4">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Modified By</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/ModifiedBy.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.ModifiedBy)</i></b></span>
+                </div>
+            </div>
+        </div>
+        &nbsp
+
+        <div class="m-lg-auto pl-4">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Added On</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/AddedOn.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.AddedOn)</i></b></span>
+                </div>
+            </div>
+        </div>
+        &nbsp
+        <div class="m-lg-auto pl-4">
+            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                    <span><b>Modified On</b></span>
+                </div>
+                <div class="a-section a-spacing-small a-text-center">
+                    <span><img src="~/Images/AddedOn.jpg" /></span>
+                </div>
+                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                    <span><b><i>@Html.DisplayFor(model => model.LastModifiedOn)</i></b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+    <br />
     <div class="btn-group">
 
         <div>
