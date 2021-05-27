@@ -3,6 +3,21 @@
     ViewData["Title"] = "Virtual Book Store | Books";
 }
 
+<div class="row justify-content-between">
+    <div class="col-auto">
+        <h2><b class="align1">Books</b><br /></h2>
+    </div>
+    <div>
+        
+            <a class="btn btn-outline-primary" asp-area="" asp-controller="Home" asp-action="Create">Add New Book</a>
+        
+       
+          <a class="btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="ViewDelistedBooks">Show Delisted Books</a>
+      
+    </div>
+</div>
+<br />
+
 @if (Model != null)
 {
     // <b> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">New Book</a></b>
@@ -11,7 +26,7 @@
     <div class="form-horizontal bg3">
 
 
-        <h2><b class="align1">Books</b><br /></h2><br />
+
         <div class="form-group">
 
 
@@ -43,27 +58,28 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        
-                            <td>
-                                <a class="text-dark text-info" asp-area="" asp-controller="Home" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Author)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Subcategory)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Publisher)
-                            </td>
-                            <td>$
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
 
-                        
+                        <td>
+                            <a class="text-dark text-info" asp-area="" asp-controller="Home" asp-action="ViewBookDetails" asp-route-BookName="@item.BookName"> @Html.DisplayFor(modelItem => item.BookName)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        <td>
+                            $
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+
+
                     </tr>
 
                 }
@@ -77,23 +93,12 @@
 }
 else
 {
-           
-        <h3 class="newcls">No Books Available</h3>
+
+    <h3 class="newcls">No Books Available</h3>
 
 
 }
-<div class="container fixed-bot">
-    <div class="row">
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Create">New Book</a></b>
-        </div>
 
-        <div class="col-md-2">
-            <b> <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ViewDelistedBooks">Delisted Books</a></b>
-        </div>
-    </div>
-
-</div>
 
 
 
