@@ -57,8 +57,8 @@
 
                 @foreach (var item in Model)
                 {
-                    
-                    <tr onclick="location.href = '@Url.Action("ViewBookDetails", "Home", new { BookName = item.BookName})'">
+
+                    <tr onclick="location.href = '@Url.Action("ViewBookDetails", "Home", new { BookName = item.BookName })'">
 
                         <td>
                              @Html.DisplayFor(modelItem => item.BookName)
@@ -75,9 +75,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Publisher)
                         </td>
+                        @{ string price = "$" + item.Price.ToString(); }
                         <td>
-                            $
-                            @Html.DisplayFor(modelItem => item.Price)
+                            @price
                         </td>
 
 
