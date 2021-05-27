@@ -6,273 +6,280 @@
 }
 
 
-<h2><b class="align1">Book Details</b><br /></h2>
-<br />
-@if (Model != null)
-{
-<div class="well border border-5 border-dark p-md-3 ">
-    <div class="row">
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Book Name</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Book.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+<div class="row justify-content-between">
 
-                    <span><b><i>@Html.DisplayFor(model => model.BookName)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-        @*@Html.DisplayNameFor(model => model.Author)<br>*@
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Author</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Author.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+    <div class="col-auto"> <h2><b class="align1">Book Details</b><br /></h2></div>
+    @if (Model != null)
+    {
+<div class="btn-group">
 
-                    <span><b><i>@Html.DisplayFor(model => model.Author)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Publisher</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Publisher.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+    <div>
+        <form asp-action="EditBookDetails" asp-controller="Home" method="get">
+            <input type="hidden" name="id" value="@Model.BookName" />
+            <button type="submit" class="btn btn-outline-primary">
+                Edit
+            </button>
+        </form>
+    </div>
+    &nbsp
 
-                    <span><b><i>@Html.DisplayFor(model => model.Publisher)</i></b></span>
+    <!-- Button trigger modal -->
+    <div>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#@id">
+            Delist
+        </button>
+    </div>
+    &nbsp
+    <!-- Modal -->
+    <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delist Book</h5>
                 </div>
+                <form asp-controller="Home" asp-action="DelistBookName" method="get">
+                    <div class="modal-body">
+                        Do you want to delist this book @Model.BookName?
+                        <input type="hidden" name="bookName" value="@Model.BookName" />
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-success">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <br />
-    <br />
-    <br />
-    <div class="row">
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Price</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/price.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>$@Html.DisplayFor(model => model.Price)</i></b></span>
-                </div>
-            </div>
-          
-        </div>
-        &nbsp
-
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Pages</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Pages.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.Pages)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Category</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Category.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.Category)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-
-        <div class="m-lg-auto">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Subcategory</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/Subcategory.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.Subcategory)</i></b></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <div class="row">
-        <div class="m-lg-auto pl-4">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Added By</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/AddedBy.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.AddedBy)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-        <div class="m-lg-auto pl-4">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Modified By</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/ModifiedBy.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.ModifiedBy)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-
-        <div class="m-lg-auto pl-4">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Added On</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/AddedOn.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.AddedOn)</i></b></span>
-                </div>
-            </div>
-        </div>
-        &nbsp
-        <div class="m-lg-auto pl-4">
-            <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
-                <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
-                    <span><b>Modified On</b></span>
-                </div>
-                <div class="a-section a-spacing-small a-text-center">
-                    <span><img src="~/Images/AddedOn.jpg" /></span>
-                </div>
-                <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
-
-                    <span><b><i>@Html.DisplayFor(model => model.LastModifiedOn)</i></b></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-    <br />
-    <br />
-</div>
-    <br />
-    <div class="btn-group">
-
-        <div>
-            <form asp-action="EditBookDetails" asp-controller="Home" method="get">
-                <input type="hidden" name="id" value="@Model.BookName" />
-                <button type="submit" class="btn btn-dark">
-                    Edit
-                </button>
-            </form>
-        </div>
-        &nbsp
-
-        <!-- Button trigger modal -->
-
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@idDelist">
+   
+    <div>
+        <button type="submit" class="btn btn-outline-danger" data-toggle="modal" data-target="#@idDelist">
             Delete
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="@idDelist" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-light">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Book</h5>
-                    </div>
-                    <form asp-controller="Home" asp-action="DeleteBookName" method="get">
-                        <div class="modal-body">
-                            Do you want to delete this book @Model.BookName?
-                            <input type="hidden" name="bookName" value="@Model.BookName" />
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="submit" class="btn btn-dark">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        &nbsp
-
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#@id">
-            Delist
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-light">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Delist Book</h5>
-                    </div>
-                    <form asp-controller="Home" asp-action="DelistBookName" method="get">
-                        <div class="modal-body">
-                            Do you want to delist this book @Model.BookName?
-                            <input type="hidden" name="bookName" value="@Model.BookName" />
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="submit" class="btn btn-dark">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        &nbsp
-        <form asp-controller="Home" asp-action="Index" method="get">
-            <button type="submit" class="btn btn-dark">
-                Cancel
-            </button>
-        </form>
-
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="@idDelist" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Book</h5>
+                </div>
+                <form asp-controller="Home" asp-action="DeleteBookName" method="get">
+                    <div class="modal-body">
+                        Do you want to delete this book @Model.BookName?
+                        <input type="hidden" name="bookName" value="@Model.BookName" />
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    &nbsp
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <button type="submit" class="btn btn-outline-secondary">
+            Cancel
+        </button>
+    </form>
+
+</div>
+
+    }
+
+</div>
+<br />
+@if (Model != null)
+{
+    <div class="well border border-5 border-dark p-md-3 ">
+        <div class="row justify-content-around my-5 text-center">
+
+
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>BookName</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Book.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.BookName)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            @*@Html.DisplayNameFor(model => model.Author)<br>*@
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Author</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Author.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Author)</i></b></span>
+                    </div>
+                </div>
+            </div>
+       
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Publisher</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Publisher.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Publisher)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row justify-content-around my-5 text-center">
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Price</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/price.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>$@Html.DisplayFor(model => model.Price)</i></b></span>
+                    </div>
+                </div>
+
+            </div>
+            
+
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Pages</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Pages.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Pages)</i></b></span>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Category</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Category.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Category)</i></b></span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Subcategory</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/Subcategory.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.Subcategory)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row justify-content-around my-5 text-center">
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Added By</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedBy.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.AddedBy)</i></b></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Modified By</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/ModifiedBy.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.ModifiedBy)</i></b></span>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Added On</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedOn.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.AddedOn)</i></b></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-auto">
+                <div class="a-section rpi-attribute-content" style="min-height: 7.1428em">
+                    <div class="a-section a-spacing-small a-text-center rpi-attribute-label">
+                        <span><b>Modified On</b></span>
+                    </div>
+                    <div class="a-section a-spacing-small a-text-center">
+                        <span><img src="~/Images/AddedOn.jpg" /></span>
+                    </div>
+                    <div class="a-section a-spacing-none a-text-center rpi-attribute-value">
+
+                        <span><b><i>@Html.DisplayFor(model => model.LastModifiedOn)</i></b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+    </div>
+    <br />
 
 
 }
