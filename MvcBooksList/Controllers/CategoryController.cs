@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MvcBooksList.jwt;
@@ -12,8 +13,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MvcBooksList.Controllers
 {
+    
     public class CategoryController : Controller
     {
         readonly Uri baseAddressOfCategoryApi;
@@ -24,14 +27,18 @@ namespace MvcBooksList.Controllers
         {
             baseAddressOfCategoryApi = new Uri(configuration.GetSection("ApiAddress:CategoryAPI").Value);
             JWTToken jwttokenProvider = new JWTToken();
-            token = jwttokenProvider.generateJwtToken("user43");
+            string name = Environment.UserName;
+            token = jwttokenProvider.generateJwtToken(name);
+          
+            
         }
         // GET: CategoryController
         public async Task<ActionResult> Index()
         {
             List<Category> categories;
-
            
+           
+
 
             using (HttpClient client = new HttpClient())
             {
